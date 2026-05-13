@@ -247,6 +247,53 @@
         const items = document.getElementsByClassName('historial-item');
         Array.from(items).forEach(i => i.style.display = i.textContent.toLowerCase().includes(term) ? "block" : "none");
     }
+    // --- VALIDACIÓN DE ACCESO ÚNICO ---
+db.ref('configuracion/perfil_secretaria').on('value', snap => {
+    const data = snap.val();
+    if(data) {
+        // Si ya hay alguien, verificamos si es el que está usando la PC actual
+        // mediante una sesión simple en localStorage
+        const sesionActiva = localStorage.getItem('sesion_secre');
+        
+        if(sesionActiva === data.dni) {
+            document.getElementById('mod-perfil').classList.add('hidden');
+            document.getElementById('mod-registros').classList.remove('hidden');
+            document.getElementById('user-tag').innerHTML = `<i class="fas fa-user-shield me-1"></i> ${data.nombre} (Principal)`;
+            cargarHistorial();
+        } else {
+            // Si hay datos pero no hay sesión, pedimos LOGIN, no registro
+            mostrarLoginUnico(data);
+        }
+    } else {
+        // Solo si la base de datos está vacía, mostramos el registro
+        document.getElementById('mod-perfil').classList.remove('hidden');
+        document.getElementById('mod-registros').classList.add('hidden');
+    }
+});
+function guardarPerfil() {
+    const n = document.getElementById('nombreSec').value, 
+          d = document.getElementById('dniSec').value, 
+          p = document.getElementById('passSec').value;
+
+    if(!n || !d || !p) return Swal.fire('Atención', 'Completa los campos', 'warning');
+
+    // Verificamos una última vez si ya existe alguien antes de guardar
+    db.ref('configuracion/perfil_secretaria').once('value', snap => {
+        if(snap.exists()) {
+            Swal.fire('Error', 'Ya existe una secretaria principal registrada.', 'error');
+        } else {
+            db.ref('configuracion/perfil_secretaria').set({ 
+                nombre: n, 
+                dni: d, 
+                clave: p,
+                fecha_activacion: new Date().toLocaleString()
+            }).then(() => {
+                localStorage.setItem('sesion_secre', d);
+                Swal.fire('Sistema Activado', 'Usted es ahora la única persona autorizada', 'success');
+            });
+        }
+    });
+}
 </script>
 </body>
 </html>
