@@ -171,5 +171,86 @@
             if(!t) return '';
             const d = document.createElement('div'); d.textContent = t; return d.innerHTML;
         }
+ <script>
+// 1. Configuración de la Muni
+const MUNI = {
+    telefono: "51969356686",
+    abre: 7.5,  // 07:30 AM
+    cierra: 15.5 // 03:30 PM
+};
+
+// 2. ELIMINAR REGISTRO DE SERVICE WORKER (Para que no falle más)
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+            registration.unregister(); // Esto borra el registro antiguo
+        }
+    });
+}
+
+// 3. Función de Horario
+function controlarHorario() {
+    const ahora = new Date();
+    const diaSemana = ahora.getDay(); // 0=Dom, 1=Lun, ..., 5=Vie, 6=Sáb
+    const hora = ahora.getHours();
+    const minutos = ahora.getMinutes();
+    const horaDecimal = hora + (minutos / 60);
+
+    const btn = document.getElementById('btn-reporte-final');
+    const ind = document.getElementById('indicador-horario');
+
+    // Validación: Lunes a Viernes (1 a 5) Y dentro del rango de horas
+    const esDiaLaboral = diaSemana >= 1 && diaSemana <= 5;
+    const esHoraLaboral = horaDecimal >= MUNI.abre && horaDecimal < MUNI.cierra;
+    const estaAbierto = esDiaLaboral && esHoraLaboral;
+
+    if (btn) {
+        if (estaAbierto) {
+            // Activa el botón y pone color verde
+            btn.disabled = false;
+            btn.className = "w-full bg-green-600 text-white p-6 rounded-[2.5rem] font-black uppercase tracking-[0.2em] shadow-xl flex items-center justify-center gap-4 transition-all active:scale-95";
+            btn.innerHTML = '<i class="fa-brands fa-whatsapp text-2xl"></i> Enviar al WhatsApp';
+            if(ind) ind.innerHTML = '<span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-[10px] font-black uppercase italic tracking-widest animate-pulse">● Oficina Atendiendo</span>';
+        } else {
+            // Desactiva el botón y pone color rojo/gris
+            btn.disabled = true;
+            btn.className = "w-full bg-red-500 text-white p-6 rounded-[2.5rem] font-black uppercase tracking-[0.2em] shadow-xl flex items-center justify-center gap-4 opacity-60 cursor-not-allowed";
+            
+            // Texto dinámico según la razón del cierre
+            let motivo = !esDiaLaboral ? "Cerrado (Atención Lun-Vie)" : "Fuera de Horario";
+            btn.innerHTML = `<i class="fa-solid fa-clock text-2xl"></i> ${motivo}`;
+            
+            if(ind) ind.innerHTML = '<span class="bg-red-100 text-red-700 px-4 py-2 rounded-full text-[10px] font-black uppercase italic tracking-widest">● Mesa de Partes Cerrada</span>';
+        }
+    }
+}
+
+// 4. Función de Envío
+// 4. Función de Envío (Actualizada: Sin DNI para mayor agilidad)
+function enviarAlWhatsApp(event) {
+    event.preventDefault();
+
+    // Verificación final de seguridad
+    const ahora = new Date();
+    const hDec = ahora.getHours() + (ahora.getMinutes() / 60);
+    const dSem = ahora.getDay();
+    
+    if (!(dSem >= 1 && dSem <= 5 && hDec >= MUNI.abre && hDec < MUNI.cierra)) {
+        alert("El horario de atención ha terminado. Por favor, intente mañana desde las 07:30 AM.");
+        return;
+    }
+
+    const nombre = document.getElementById('repo_nombre').value;
+    const msg    = document.getElementById('repo_detalle').value;
+
+    // Construcción del texto sin el campo DNI
+    const texto = `🚨 *REPORTE CIUDADANO* 🚨%0A%0A👤 *Nombre:* ${nombre}%0A📝 *Detalle:* ${msg}`;
+    
+    window.open(`https://wa.me/${MUNI.telefono}?text=${texto}`, '_blank');
+}
+
+// Iniciar al cargar la web
+window.onload = controlarHorario;
+</script>
     </script>
 </script>
