@@ -296,7 +296,7 @@
                             <i class="ti ti-alert-square-rounded text-xl text-amber-600 shrink-0"></i>
                             <div>
                                 <strong class="uppercase font-black text-amber-900">Notificación de Impuesto Predial</strong><br>
-                                Se detectan periodos sin liquidar para el inmueble <strong>"${p.nombre_predio}"</strong> desde el <strong>Año Fiscal ${p.anio_deuda_predial}</strong>.
+                                Se detectan periodos sin liquidar para el inmueble <strong>"${p.tipo_predio}"</strong> desde el <strong>Año Fiscal ${p.anio_deuda_predial}</strong>.
                             </div>
                         </div>
                     `;
@@ -340,7 +340,7 @@
                 boxPredios.innerHTML += `
                     <div class="border border-slate-200 rounded-[14px] p-5 bg-white mb-4 shadow-sm text-left">
                         <div class="flex justify-between items-center mb-2">
-                            <div class="text-sm font-black text-slate-800 flex items-center gap-1.5"><i class="ti ti-map-pin-pin text-[#00A350] text-base"></i> ${escapar(p.nombre_predio)}</div>
+                            <div class="text-sm font-black text-slate-800 flex items-center gap-1.5"><i class="ti ti-map-pin-pin text-[#00A350] text-base"></i> ${escapar(p.tipo_predio)}</div>
                             <span class="p-0.5 px-2 rounded-md text-[9px] font-black tracking-wide ${claseInmueble}">${p.tipo_predio}</span>
                         </div>
                         <p class="text-xs text-slate-400 mb-1">${escapar(p.direccion_predio)}</p>
