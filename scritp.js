@@ -1144,7 +1144,9 @@ const oficinas = [
             { id: "sisfoh", n: "ULE - SISFOH", e: "Responsable: Jessica Vasquez", tel: "51978757404", msg: "Hola, consulto sobre mi empadronamiento SISFOH." },
             { id: "pvl", n: "Vaso de Leche (PVL)", e: "Responsable: Fabiana Diaz", tel: "51961518855", msg: "Hola, Información sobre el Programa Vaso de Leche." },
             { id: "defensa", n: "Defensa Civil", e: "Responsable: Jhonny  ", tel: "51973446958", msg: "Hola, Consulta sobre Defensa Civil." },
-            { id: "omaped", n: "OMAPED y CIAM", e: "Responsable: Jessica Vasquez", tel: "51978757404", msg: "Hola, Consulta sobre programas sociales OMAPED/CIAM." }
+            { id: "omaped", n: "OMAPED y CIAM", e: "Responsable: Jessica Vasquez", tel: "51978757404", msg: "Hola, Consulta sobre programas sociales OMAPED/CIAM." },
+            {  id: "demuna",  n: "DEMUNA",  e: "Responsable:  Dodith Ochoa ",  tel: "51973035690",msg: "Hola, deseo realizar una consulta en DEMUNA." },
+            {   id: "registro_civil", n: "Registro Civil", e: "Responsable: DoditH Ochoa", tel: "51973035690", msg: "Hola, solicito información sobre trámites de Registro Civil."}
         ] 
     },
 
