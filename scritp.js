@@ -257,13 +257,20 @@ window.onload = controlarHorario;
    const tasas = [
     // --- SERVICIOS TUPA ---
     { tipo: "TUPA", n: "Liquidación de Autovaluo", p: "Monto Variable", icon: "fa-file-invoice-dollar", r: "• Caso A (Nuevo): Escritura o Copia Literal + DNI.<br>• Caso B (Anual): DNI y Código de Contribuyente." },
-    { tipo: "TUPA", n: "Licencia de Funcionamiento", p: "Monto Variable", icon: "fa-store", r: "• Solicitud dirigida a la oficina de rentas.<br>• Fotocopia del DNI.<br>• Fotocopia de RUC.<br>• Certificado Sanitario.<br>• Inspección de Defensa Civil." },
+    { tipo: "TUPA", n: "Licencia de Funcionamiento", p: "100.00", icon: "fa-store", r: "• Solicitud dirigida a la oficina de rentas.<br>• Fotocopia del DNI.<br>• Fotocopia de RUC.<br>• Certificado Sanitario.<br>• Inspección de Defensa Civil." },
     { tipo: "TUPA", n: "Constancia de No Adeudo", p: "S/. 10.00", icon: "fa-certificate", r: "• Recibo de pago por derecho de trámite.<br>• Estar al día en el pago de Impuesto Predial y Arbitrios.<br>• Copia de DNI del titular." },
     
     { tipo: "TUPA", n: "Expedicion de Constancia Negativa de Catastro", p: "S/. 30.00", icon: "fa-map-location-dot", r: "• Solicitud dirigida al director de infraestructura.<br>• Pago de derecho de emisión.<br>• Fotocopia del DNI." },
   
  
     // --- PROCEDIMIENTOS REGISTRO CIVIL (TUPA) ---
+     { 
+    tipo: "TUPA", 
+    n: "Requisitos para Matrimonio Civil", 
+    p: "Varía", 
+    icon: "fa-users", 
+    r: "1. Partida de nacimiento (Ambos).<br>2. Copia del DNI (Ambos). Extranjeros: pasaporte y/o carné de extranjería.<br>3. Declaración Jurada de domicilio (Ambos).<br>4. Certificado de salud.<br>5. Constancia negativa de inscripción de matrimonio.<br>6. Solicitud.<br>7. Dos testigos mayores de edad (de preferencia vecinos del lugar, menores de 60 años).<br>8. Copia del DNI de los testigos.<br>9. Datos personales de los testigos.<br>10. Recibo de pago por derechos administrativos.<br><br><b>Costos Matrimonio en Local Municipal:</b><br>- En hora de trabajo: S/. 100.00<br>- Fuera de hora de trabajo: S/. 180.00<br><br><b>Costos Matrimonio a Domicilio:</b><br>- En hora de trabajo: S/. 150.00<br>- Fuera de hora de trabajo: S/. 180.00<br>- Fuera de la capital del distrito (dentro de la jurisdicción): S/. 180.00<br>- Fuera de la jurisdicción: S/. 360.00" 
+},
     { 
         tipo: "TUPA", 
         n: "Inscripción Extraordinaria: Mayores de 18 años", 
@@ -569,7 +576,7 @@ window.onload = controlarHorario;
     },
     { 
         tipo: "TUPA", 
-        n: "Análisis y Calificación de Expediente para Licencia de Edificación Nueva", 
+        n: "Licencia de Construcción", 
         p: "s/. 45.00", 
         icon: "fa-building-shield", 
         r: "<b>Requisitos Detallados (Procedimiento 53):</b><br>" +
@@ -1137,7 +1144,7 @@ const oficinas = [
             { id: "sisfoh", n: "ULE - SISFOH", e: "Responsable: Jessica Vasquez", tel: "51978757404", msg: "Hola, consulto sobre mi empadronamiento SISFOH." },
             { id: "pvl", n: "Vaso de Leche (PVL)", e: "Responsable: Fabiana Diaz", tel: "51961518855", msg: "Hola, Información sobre el Programa Vaso de Leche." },
             { id: "defensa", n: "Defensa Civil", e: "Responsable: Jhonny  ", tel: "51973446958", msg: "Hola, Consulta sobre Defensa Civil." },
-            { id: "omaped", n: "OMAPED y CIAM", e: "Responsable: -----", tel: "-------", msg: "Hola, Consulta sobre programas sociales OMAPED/CIAM." }
+            { id: "omaped", n: "OMAPED y CIAM", e: "Responsable: Jessica Vasquez", tel: "51978757404", msg: "Hola, Consulta sobre programas sociales OMAPED/CIAM." }
         ] 
     },
 
