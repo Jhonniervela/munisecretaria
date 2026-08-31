@@ -12,9 +12,9 @@
       
 
         // CLIENTE SUPABASE CONECTADO A TU INSTANCIA
-        const SUPABASE_URL = "https://simcrwuckcmckglpyiji.supabase.co";
-        const SUPABASE_ANON_KEY = "sb_publishable_qojEI-wMwECF7WKlqbxkjA_WofUwvO-"; 
-        const DB = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const SUPABASE_URL = 'https://epjwgnjaxguzlrmsvtuq.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable__py_2VbWJSOU_1BRqQdR7w_Yp4uZ5-p';
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','set','oct','nov','dic'];
         const ANIO_FISCAL_ACTUAL = 2026;
 
