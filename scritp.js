@@ -1631,3 +1631,66 @@ controlarHorarioBanner();
 // Revisar cada 60 segundos por si el tiempo cambia mientras la app está abierta
 setInterval(controlarHorarioBanner, 60000);
 
+// === BLOQUEO DE TECLAS Y MENÚ CONTEXTUAL ===
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+document.addEventListener('keydown', (e) => {
+  // Bloquear F12
+  if (e.key === 'F12' || e.keyCode === 123) {
+    e.preventDefault();
+    return false;
+  }
+  // Bloquear Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+  if (e.ctrlKey && e.shiftKey && ['I', 'i', 'J', 'j', 'C', 'c'].includes(e.key)) {
+    e.preventDefault();
+    return false;
+  }
+  // Bloquear Ctrl+U (Ver fuente) y Ctrl+S (Guardar página)
+  if (e.ctrlKey && ['U', 'u', 'S', 's'].includes(e.key)) {
+    e.preventDefault();
+    return false;
+  }
+});
+// === TRAMPA ANTI-DEBUGGER ===
+(function antiDevTools() {
+  const check = function() {
+    const start = performance.now();
+    debugger; // Si DevTools está abierto, el código se pausará aquí
+    const end = performance.now();
+    
+    // Si la pausa dura más de 100ms, significa que la consola está abierta
+    if (end - start > 100) {
+      document.body.innerHTML = `
+        <div style="display:flex;height:100vh;align-items:center;justify-content:center;background:#0f172a;color:#fff;font-family:sans-serif;text-align:center;padding:20px;">
+          <div>
+            <h1 style="font-size:20px;font-weight:bold;color:#ef4444;text-transform:uppercase;">Acceso Restringido</h1>
+            <p style="font-size:12px;color:#94a3b8;margin-top:8px;">Por razones de seguridad, la inspección de código está deshabilitada en el Portal Municipal.</p>
+            <button onclick="location.reload()" style="margin-top:16px;padding:12px 24px;background:#00A350;color:#fff;border:none;border-radius:12px;font-weight:bold;cursor:pointer;">Volver al Portal</button>
+          </div>
+        </div>
+      `;
+    }
+  };
+  
+  setInterval(check, 1000);
+})();
+function descargarDocumentoSeguro(nombreArchivo) {
+  const ruta = `docs/${nombreArchivo}`;
+  fetch(ruta)
+    .then(res => {
+      if (!res.ok) throw new Error('Archivo no disponible');
+      return res.blob();
+    })
+    .then(blob => {
+      const blobUrl = window.URL.createObjectURL(blob);
+      const tempLink = document.createElement('a');
+      tempLink.style.display = 'none';
+      tempLink.href = blobUrl;
+      tempLink.download = nombreArchivo;
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      window.URL.revokeObjectURL(blobUrl);
+      tempLink.remove();
+    })
+    .catch(() => alert('No se pudo descargar el documento en este momento.'));
+}
