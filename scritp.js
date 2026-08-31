@@ -14,7 +14,7 @@
         // CLIENTE SUPABASE CONECTADO A TU INSTANCIA
         const SUPABASE_URL = 'https://epjwgnjaxguzlrmsvtuq.supabase.co';
     const SUPABASE_KEY = 'sb_publishable__py_2VbWJSOU_1BRqQdR7w_Yp4uZ5-p';
-    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+   const DB = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','set','oct','nov','dic'];
         const ANIO_FISCAL_ACTUAL = 2026;
 
@@ -1493,9 +1493,7 @@ function activarNotificaciones() {
             console.log('Error al obtener permiso:', err);
         });
 }
-const SUPABASE_URL = 'https://epjwgnjaxguzlrmsvtuq.supabase.co';
-const SUPABASE_KEY = 'sb_publishable__py_2VbWJSOU_1BRqQdR7w_Yp4uZ5-p';
-const DB = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); // <-- antes era _supabase, causaba "DB is not defined"
+
 
 async function ejecutarConsulta() {
     const suministro = document.getElementById('txt-dni').value.trim(); // sigue usando el mismo input; puedes renombrar el id/placeholder en el HTML a "txt-suministro"
