@@ -1694,3 +1694,17 @@ function descargarDocumentoSeguro(nombreArchivo) {
     })
     .catch(() => alert('No se pudo descargar el documento en este momento.'));
 }
+function actualizarModulo() {
+    // Obtener el DNI actual cargado en la vista
+    const dniActual = document.getElementById('lbl-dni').innerText.replace('DNI: ', '').trim();
+    
+    if (dniActual && dniActual !== '—') {
+        // Lógica para volver a consultar la API o actualizar la interfaz
+        console.log("Actualizando datos para DNI:", dniActual);
+        
+        // Ejemplo: llamar a la función que obtiene los datos de la persona/predio
+        // cargarDatosPortal(dniActual);
+    } else {
+        alert("No hay información activa para actualizar.");
+    }
+}
