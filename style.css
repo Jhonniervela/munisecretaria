@@ -149,7 +149,30 @@ body {
     cursor: pointer;
     box-sizing: border-box;
 }
+/* Bloqueo de selección e inspección táctil/visual */
+body {
+  -webkit-touch-callout: none; /* Desactiva el menú al mantener presionado en móvil */
+  -webkit-user-select: none;   /* Safari */
+  -khtml-user-select: none;    /* Navegadores antiguos */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Desactiva selección de texto general */
+}
 
+/* Permitir selección únicamente en campos donde se debe escribir */
+input, textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Evitar arrastrar imágenes fuera de la PWA */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
 /* ESTADOS COMPARTIDOS DE PAGO (Soportando m-pagado/m-debe y m-paid/m-debt) */
 .m-pagado, .m-paid { background: #ecfdf5 !important; color: #065f46 !important; border-color: #a7f3d0 !important; }
 .m-debe, .m-debt { background: #fef2f2 !important; color: #991b1b !important; border-color: #fecaca !important; }
