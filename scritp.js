@@ -1548,29 +1548,55 @@ async function procesarYRenderizarDatos(vecino) {
     boxPredios.innerHTML = '';
 
     const servicios = vecino.servicios || {};
+    const pagos = vecino.pagos || new Array(12).fill(0);
     const nombresServicio = { agua: 'Arbitrio de Agua Potable', desague: 'Sistema de Alcantarillado', limpieza: 'Limpieza Pública' };
 
-    let filas = '';
-    let total = 0;
+    // Monto total mensual (suma de todos los servicios activos)
+    let totalMensual = 0;
+    for (const clave in servicios) {
+        totalMensual += Number(servicios[clave]) || 0;
+    }
 
+    let acumuladoPagado = 0;
+    let acumuladoDeuda = 0;
+
+    // Construir la cuadrícula de 12 meses comparando "pagos" contra el total mensual
+    const mesesBloques = MESES.map((m, i) => {
+        const montoPagadoMes = Number(pagos[i]) || 0;
+        const pagado = totalMensual > 0 && montoPagadoMes >= totalMensual;
+
+        if (pagado) { acumuladoPagado += totalMensual; }
+        else { acumuladoDeuda += (totalMensual - montoPagadoMes); }
+
+        return `<div class="month-block ${pagado ? 'm-paid' : 'm-debt'}">${m}</div>`;
+    }).join('');
+
+    // Desglose de servicios activos (solo como referencia de costo, no por mes)
+    let filasServicios = '';
     for (const clave in servicios) {
         const monto = Number(servicios[clave]) || 0;
-        total += monto;
-        filas += `
-            <div class="flex justify-between text-xs font-bold text-slate-700 py-2 border-b border-dashed border-slate-200">
+        filasServicios += `
+            <div class="flex justify-between text-xs font-bold text-slate-700 py-1.5">
                 <span><i class="ti ti-chevrons-right text-[10px] text-[#00A350]"></i> ${nombresServicio[clave] || clave}</span>
-                <span class="font-mono text-slate-600">S/ ${monto.toFixed(2)}</span>
+                <span class="font-mono text-slate-400">S/ ${monto.toFixed(2)} / mes</span>
             </div>`;
     }
 
     boxPredios.innerHTML = `
         <div class="border border-slate-200 rounded-[14px] p-5 bg-white mb-4 shadow-sm text-left">
-            <p class="text-xs text-slate-400 mb-2">${escapar(vecino.direccion || '')}</p>
-            ${filas}
+            <p class="text-xs text-slate-400 mb-3">${escapar(vecino.direccion || '')}</p>
+            ${filasServicios}
+            <div class="mt-3 border-t border-dashed border-slate-200 pt-3">
+                <div class="flex justify-between text-xs font-bold text-slate-700 mb-1.5">
+                    <span>Estado mensual ${ANIO_FISCAL_ACTUAL}</span>
+                    <span class="font-mono text-slate-400">S/ ${totalMensual.toFixed(2)} / mes</span>
+                </div>
+                <div class="grid grid-cols-6 sm:grid-cols-12 gap-1">${mesesBloques}</div>
+            </div>
         </div>`;
 
-    document.getElementById('monto-deuda').innerText = `S/ ${total.toFixed(2)}`;
-    document.getElementById('monto-pagado').innerText = `S/ 0.00`; // no hay dato de "pagado" en este esquema
+    document.getElementById('monto-pagado').innerText = `S/ ${acumuladoPagado.toFixed(2)}`;
+    document.getElementById('monto-deuda').innerText = `S/ ${acumuladoDeuda.toFixed(2)}`;
 }
 // Llamar a la función automáticamente al cargar la página
 activarNotificaciones();
