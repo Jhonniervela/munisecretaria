@@ -1695,16 +1695,30 @@ function descargarDocumentoSeguro(nombreArchivo) {
     .catch(() => alert('No se pudo descargar el documento en este momento.'));
 }
 function actualizarModulo() {
-    // Obtener el DNI actual cargado en la vista
-    const dniActual = document.getElementById('lbl-dni').innerText.replace('DNI: ', '').trim();
-    
-    if (dniActual && dniActual !== '—') {
-        // Lógica para volver a consultar la API o actualizar la interfaz
-        console.log("Actualizando datos para DNI:", dniActual);
-        
-        // Ejemplo: llamar a la función que obtiene los datos de la persona/predio
-        // cargarDatosPortal(dniActual);
-    } else {
-        alert("No hay información activa para actualizar.");
+    // 1. Obtener el DNI o ID del predio almacenado actualmente
+    const dniTexto = document.getElementById('lbl-dni').innerText;
+    const dni = dniTexto.replace('DNI:', '').trim();
+
+    // 2. Validar que exista un valor válido antes de consultar
+    if (!dni || dni === '—') {
+        console.warn("No se encontró un DNI válido para actualizar.");
+        return;
     }
+
+    // 3. Opcional: Feedback visual en el botón de actualización
+    const btn = event?.currentTarget;
+    if (btn) btn.classList.add('opacity-50', 'pointer-events-none');
+
+    // 4. Llama a tu función original de consulta enviando el DNI activo
+    // REEMPLAZA 'tuFuncionDeConsulta' POR EL NOMBRE REAL DE TU FUNCIÓN
+    tuFuncionDeConsulta(dni)
+        .then(() => {
+            console.log("Módulo actualizado con éxito.");
+        })
+        .catch((error) => {
+            console.error("Error al actualizar el módulo:", error);
+        })
+        .finally(() => {
+            if (btn) btn.classList.remove('opacity-50', 'pointer-events-none');
+        });
 }
