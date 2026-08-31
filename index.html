@@ -94,13 +94,23 @@
         </div>
 
         <!-- FASE 3: RETORNO DE INFORMACIÓN E HISTORIAL DE PREDIOS -->
-        <div id="portal-results" class="results-view" style="display: none;">
-            <div class="bg-slate-900 text-white p-6 rounded-[14px] mb-4 relative text-left">
-                <button class="absolute top-5 right-5 bg-white/10 border border-white/15 text-white px-2.5 py-1 text-xs font-semibold rounded-lg cursor-pointer flex items-center gap-1.5 hover:bg-white/20 transition-all" onclick="regresarPortal()"><i class="ti ti-logout"></i> Salir</button>
-                <p class="text-emerald-400 font-extrabold uppercase text-[9px] tracking-widest mb-1">CONSULTA EN TIEMPO REAL</p>
-                <h2 id="lbl-nombre" class="text-base font-black tracking-tight">¡Bienvenido(a)!</h2>
-                <p id="lbl-dni" class="text-xs text-slate-400 mt-1 font-medium">DNI: —</p>
-            </div>
+<div id="portal-results" class="results-view" style="display: none;">
+    <div class="bg-slate-900 text-white p-6 rounded-[14px] mb-4 relative text-left">
+        
+        <!-- Grupo de Botones: Actualizar y Salir -->
+        <div class="absolute top-5 right-5 flex items-center gap-2">
+            <button type="button" class="bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/30 px-2.5 py-1 text-xs font-semibold rounded-lg cursor-pointer flex items-center gap-1.5 transition-all" onclick="actualizarModulo()">
+                <i class="ti ti-refresh"></i> Actualizar
+            </button>
+            <button type="button" class="bg-white/10 border border-white/15 text-white px-2.5 py-1 text-xs font-semibold rounded-lg cursor-pointer flex items-center gap-1.5 hover:bg-white/20 transition-all" onclick="regresarPortal()">
+                <i class="ti ti-logout"></i> Salir
+            </button>
+        </div>
+
+        <p class="text-emerald-400 font-extrabold uppercase text-[9px] tracking-widest mb-1">CONSULTA EN TIEMPO REAL</p>
+        <h2 id="lbl-nombre" class="text-base font-black tracking-tight">¡Bienvenido(a)!</h2>
+        <p id="lbl-dni" class="text-xs text-slate-400 mt-1 font-medium">DNI: —</p>
+    </div>
 
             <div class="bg-emerald-50/60 border border-emerald-100 rounded-[14px] p-4 text-emerald-800 text-xs font-medium flex items-center gap-3 mb-4 text-left shadow-sm">
                 <i class="ti ti-clock-share text-lg text-emerald-600 shrink-0"></i>
