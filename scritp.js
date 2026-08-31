@@ -1493,7 +1493,87 @@ function activarNotificaciones() {
             console.log('Error al obtener permiso:', err);
         });
 }
+const SUPABASE_URL = 'https://epjwgnjaxguzlrmsvtuq.supabase.co';
+const SUPABASE_KEY = 'sb_publishable__py_2VbWJSOU_1BRqQdR7w_Yp4uZ5-p';
+const DB = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); // <-- antes era _supabase, causaba "DB is not defined"
 
+async function ejecutarConsulta() {
+    const suministro = document.getElementById('txt-dni').value.trim(); // sigue usando el mismo input; puedes renombrar el id/placeholder en el HTML a "txt-suministro"
+    if(!suministro) {
+        alert("Por favor, ingrese un número de suministro válido.");
+        return;
+    }
+
+    cambiarFasePortal('loading');
+    const txt = document.getElementById('loading-txt');
+    const bar = document.getElementById('bar-fill');
+
+    bar.style.width = "40%"; txt.innerText = "Verificando número de suministro...";
+
+    try {
+        const { data: contribuyentes, error: e1 } = await DB
+            .from('contribuyentes')
+            .select('*')
+            .eq('suministro', suministro); // <-- antes era .eq('num_documento', dni)
+        if(e1) throw e1;
+
+        if(!contribuyentes || contribuyentes.length === 0) {
+            setTimeout(() => {
+                alert("El número de suministro ingresado no se encuentra registrado.");
+                cambiarFasePortal('search');
+            }, 500);
+            return;
+        }
+        const vecino = contribuyentes[0];
+
+        await retraso(350);
+        bar.style.width = "90%"; txt.innerText = "Calculando montos...";
+
+        await procesarYRenderizarDatos(vecino);
+
+        await retraso(150);
+        bar.style.width = "100%"; txt.innerText = "Acceso Autorizado.";
+        setTimeout(() => { cambiarFasePortal('results'); }, 200);
+
+    } catch (err) {
+        console.error(err);
+        alert("Error de conexión: " + err.message);
+        cambiarFasePortal('search');
+    }
+}
+
+async function procesarYRenderizarDatos(vecino) {
+    document.getElementById('lbl-nombre').innerText = `¡Hola, ${vecino.nombre}!`;
+    document.getElementById('lbl-dni').innerText = `Suministro: ${vecino.suministro} | Domicilio: ${vecino.direccion || 'No registrado'}`;
+
+    const boxPredios = document.getElementById('container-predios');
+    boxPredios.innerHTML = '';
+
+    const servicios = vecino.servicios || {};
+    const nombresServicio = { agua: 'Arbitrio de Agua Potable', desague: 'Sistema de Alcantarillado', limpieza: 'Limpieza Pública' };
+
+    let filas = '';
+    let total = 0;
+
+    for (const clave in servicios) {
+        const monto = Number(servicios[clave]) || 0;
+        total += monto;
+        filas += `
+            <div class="flex justify-between text-xs font-bold text-slate-700 py-2 border-b border-dashed border-slate-200">
+                <span><i class="ti ti-chevrons-right text-[10px] text-[#00A350]"></i> ${nombresServicio[clave] || clave}</span>
+                <span class="font-mono text-slate-600">S/ ${monto.toFixed(2)}</span>
+            </div>`;
+    }
+
+    boxPredios.innerHTML = `
+        <div class="border border-slate-200 rounded-[14px] p-5 bg-white mb-4 shadow-sm text-left">
+            <p class="text-xs text-slate-400 mb-2">${escapar(vecino.direccion || '')}</p>
+            ${filas}
+        </div>`;
+
+    document.getElementById('monto-deuda').innerText = `S/ ${total.toFixed(2)}`;
+    document.getElementById('monto-pagado').innerText = `S/ 0.00`; // no hay dato de "pagado" en este esquema
+}
 // Llamar a la función automáticamente al cargar la página
 activarNotificaciones();
 function controlarHorarioBanner() {
