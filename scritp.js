@@ -257,7 +257,7 @@ window.onload = controlarHorario;
    const tasas = [
     // --- SERVICIOS TUPA ---
     { tipo: "TUPA", n: "Liquidación de Autovaluo", p: "Monto Variable", icon: "fa-file-invoice-dollar", r: "• Caso A (Nuevo): Escritura o Copia Literal + DNI.<br>• Caso B (Anual): DNI y Código de Contribuyente." },
-    { tipo: "TUPA", n: "Licencia de Funcionamiento", p: "100.00", icon: "fa-store", r: "• Solicitud dirigida a la oficina de rentas.<br>• Fotocopia del DNI.<br>• Fotocopia de RUC.<br>• Certificado Sanitario.<br>• Inspección de Defensa Civil." },
+    { tipo: "TUPA", n: "Licencia de Funcionamiento", p: "100.00", icon: "fa-store", r: "• Solicitud.<br>• Fotocopia del DNI.<br>• Fotocopia de RUC.<br>• Certificado Sanitario.<br>• Fotografia con dimensión 35 mm × 45 mm.<br>• Inspección de Defensa Civil." },
     { tipo: "TUPA", n: "Constancia de No Adeudo", p: "S/. 10.00", icon: "fa-certificate", r: "• Recibo de pago por derecho de trámite.<br>• Estar al día en el pago de Impuesto Predial y Arbitrios.<br>• Copia de DNI del titular." },
     
     { tipo: "TUPA", n: "Expedicion de Constancia Negativa de Catastro", p: "S/. 30.00", icon: "fa-map-location-dot", r: "• Solicitud dirigida al director de infraestructura.<br>• Pago de derecho de emisión.<br>• Fotocopia del DNI." },
@@ -470,7 +470,7 @@ window.onload = controlarHorario;
         n: "Expedición de Estado de Cuenta Tributaria", 
         p: "S/. 5.00", 
         icon: "fa-file-invoice-dollar", 
-        r: "1. Solicitud dirigida a Rentas.<br>2. Pago de derecho (S/. 5.00).<br>3. Copia de DNI.<br><b>Plazo:</b> 1 día (Automático)." 
+        r: "1. Solicitud.<br>2. Pago de derecho (S/. 5.00).<br>3. Copia de DNI.<br><b>Plazo:</b> X día (Automático)." 
     },
    
     // --- LICENCIAS DE FUNCIONAMIENTO (TUPA) ---
@@ -479,21 +479,20 @@ window.onload = controlarHorario;
         n: "Licencia: Establecimientos Comerciales (Hasta 100 m2)", 
         p: "S/. 100.00", 
         icon: "fa-store", 
-        r: "1. DNI y RUC activo.<br>2. Certificado de Defensa Civil.<br><b>Plazo:</b> 10 días hábiles." 
-    },
+         r: "• Solicitud.<br>• Fotocopia del DNI.<br>• Fotocopia de RUC.<br>• Certificado Sanitario.<br>• Fotografia con dimensión 35 mm × 45 mm.<br>• Inspección de Defensa Civil." },
     { 
         tipo: "TUPA", 
         n: "Licencia: Locales Comerciales (100 m2 a 500 m2)", 
         p: "S/. 180.00", 
         icon: "fa-shop", 
-        r: "1. DNI y RUC.<br>2. Inspección Técnica de Seguridad (ITSE) Básica.<br><b>Plazo:</b> 10 días hábiles." 
+        r: "1. DNI y RUC.<br>2. Inspección Técnica de Seguridad (ITSE) Básica.<br><b>Plazo:</b> x días hábiles." 
     },
     { 
         tipo: "TUPA", 
         n: "Licencia: Expendio de Comidas y Bebidas", 
         p: "S/. 100.00", 
         icon: "fa-utensils", 
-        r: "1. DNI y RUC.<br>2. Certificado Sanitario.<br>3. Certificado de Defensa Civil.<br><b>Plazo:</b> 10 días hábiles." 
+        r: "1. DNI y RUC.<br>2. Certificado Sanitario.<br>3. Certificado de Defensa Civil.<br><b>Plazo:</b> x días hábiles." 
     },
     { 
         tipo: "TUPA", 
@@ -641,10 +640,10 @@ window.onload = controlarHorario;
     },
     { 
         tipo: "TUPA", 
-        n: "Expedición de Constancia de Posesión", 
+        n: "Constancia de Posesión", 
         p: "S/. 20.00", 
         icon: "fa-house-chimney-user", 
-        r: "1. Solicitud formal acreditando posesión.<br>2. Copia de DNI.<br>3. Comprobante de pago por derecho de trámite (S/. 20.00).<br><b>Plazo:</b> 5 días hábiles." 
+        r: "1. Solicitud formal acreditando posesión.<br>2. Copia de DNI.<br>3.Documento acreditativo de la propiedad del predio: Copia del Título de Propiedad, Escritura Pública, Minuta o Contrato de Compraventa que demuestre la titularidad del terreno.<br>4. Comprobante de pago por derecho de trámite (S/. 20.00).<br><b>Plazo:</b> x días hábiles." 
     },
     { 
         tipo: "TUPA", 
