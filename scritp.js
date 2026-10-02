@@ -1131,7 +1131,7 @@ const oficinas = [
     { 
         nombre: "Rentas y Mesa de Partes", 
         subs: [
-            { id: "mesapartes", n: "Mesa de Partes", e: "Responsable: Brayan Vela", tel: "51969356686", msg: "Hola, Deseo realizar una consulta." }
+            { id: "mesapartes", n: "Rentas", e: "Responsable: Brayan Vela", tel: "51969356686", msg: "Hola, Deseo realizar una consulta." }
         ] 
     },
     { 
@@ -1150,7 +1150,7 @@ const oficinas = [
     { 
         nombre: "Planeamiento Urbano y Catastro", 
         subs: [
-            { id: "infraestructura", n: "Oficina de Infraestructura", e: "Responsable: Diego Ramirez", tel: "51939350568", msg: "Hola, solicito información sobre." }
+            { id: "infraestructura", n: "Gerente de Desarrollo Territorial y Económico", e: "Responsable: Diego Ramirez", tel: "51939350568", msg: "Hola, solicito información sobre." }
         ] 
     },
     { 
