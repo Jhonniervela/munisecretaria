@@ -485,22 +485,19 @@ window.onload = controlarHorario;
         n: "Licencia: Locales Comerciales (100 m2 a 500 m2)", 
         p: "S/. 180.00", 
         icon: "fa-shop", 
-        r: "1. DNI y RUC.<br>2. Inspección Técnica de Seguridad (ITSE) Básica.<br><b>Plazo:</b> x días hábiles." 
-    },
+         r: "• Solicitud.<br>• Fotocopia del DNI.<br>• Fotocopia de RUC.<br>• Certificado Sanitario.<br>• Fotografia con dimensión 35 mm × 45 mm.<br>• Inspección de Defensa Civil." }, 
     { 
         tipo: "TUPA", 
         n: "Licencia: Expendio de Comidas y Bebidas", 
         p: "S/. 100.00", 
         icon: "fa-utensils", 
-        r: "1. DNI y RUC.<br>2. Certificado Sanitario.<br>3. Certificado de Defensa Civil.<br><b>Plazo:</b> x días hábiles." 
-    },
+        r: "• Solicitud.<br>• Fotocopia del DNI.<br>• Fotocopia de RUC.<br>• Certificado Sanitario.<br>• Fotografia con dimensión 35 mm × 45 mm.<br>• Inspección de Defensa Civil." },
     { 
         tipo: "TUPA", 
         n: "Licencia: Molinos de Arroz y Granos", 
         p: "S/. 100.00", 
         icon: "fa-wheat-awn", 
-        r: "1. RUC activo.<br>2. Certificado Sanitario.<br>3. Certificado de Defensa Civil.<br><b>Plazo:</b> 15 días hábiles." 
-    },
+         r: "• Solicitud.<br>• Fotocopia del DNI.<br>• Fotocopia de RUC.<br>• Certificado Sanitario.<br>• Fotografia con dimensión 35 mm × 45 mm.<br>• Inspección de Defensa Civil." },
     { 
         tipo: "TUPA", 
         n: "Licencia para MYPES", 
