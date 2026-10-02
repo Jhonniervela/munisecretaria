@@ -867,8 +867,9 @@ window.onload = controlarHorario;
 
     // --- DEPORTES ---
 
-    { tipo: "TUSNE", n: "Estadio (Otras categorías)", p: "S/. 100.00", icon: "fa-futbol", r: "• Por día.<br>1. Solicitud.<br>2. DNI.<br>3. Recibo de Pago." },
+    { tipo: "TUSNE", n: "Campo Deportivo (Otras categorías)", p: "S/. 100.00", icon: "fa-futbol", r: "• Por día.<br>1. Solicitud.<br>2. DNI.<br>3. Recibo de Pago." },
     { tipo: "TUSNE", n: "Losa Deportiva (Eventos)", p: "S/. 150.00", icon: "fa-masks-theater", r: "• Eventos sociales/culturales.<br>1. Solicitud.<br>2. DNI.<br>3. Recibo de Pago." },
+     { tipo: "TUSNE", n: "Losa Deportiva (Deporte)", p: "S/. Viable", icon: "fa-masks-theater", r: "• Eventos Deportivo / por hora.<br>1. Solicitud.<br>2. DNI.<br>3. Recibo de Pago.<br>4.8 s/ por Hora." },
 
         // --- AGUA Y ALCANTARILLADO (ATM/UGSS) ---
     { tipo: "TUSNE", n: "Consumo Agua Mensual", p: "Desde S/. 5.00", icon: "fa-droplet", r: "• Doméstico: S/. 5.00<br>• Comercial: S/. 20.00<br>• Industrial: S/. 50.00" },
